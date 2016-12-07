@@ -7,8 +7,23 @@
 
       Try to beat the game: <%= username %>
       <form action = '/scores' method = POST>
+        What is 5 x 5?  <input type = 'text' id = 'q1' name = 'q1'><br>
 
+        What state is Lubbock in?<br>
+        <input type = 'radio' id = 'q2' name = 'q2' value = 'Wisconsin'>Wisconsin<br>
+        <input type = 'radio' id = 'q2' name = 'q2' value = 'Texas'>Texas<br>
 
+        What number is between 2 and 4, but not 5?<br>
+        <select id = 'q3' name = 'q3'>
+          <option value = "1">1</option>
+          <option value = "3">3</option>
+          <option value = "5">5</option>
+        </select><br>
+
+        What time is it?<br>
+        <input type = 'checkbox' id = 'q4a' name = 'q4a' value = "2016">2016<br>
+        <input type = 'checkbox' id = 'q4b' name = 'q4b' value = "December">December<br>
+        <input type = 'checkbox' id = 'q4c' name = 'q4c' value = "13:00AM">13:00AM<br>
 
 
         <input type = 'submit'>
