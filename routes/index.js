@@ -27,24 +27,62 @@ router.get('/game', function(req, res, next){
 });
 
 router.post('/scores', function(req, res, next){
-  console.log(req.body);
+
+  var finalScore = 0;
+
+  if(req.body.q1 === '25')
+  {
+
+    finalScore ++;
+  }
+  if(req.body.q2 === 'Texas')
+  {
+
+    finalScore ++;
+  }
+  if(req.body.q3 === '3')
+  {
+
+    finalScore ++;
+  }
+  if(req.body.q4a)
+  {
+
+    finalScore ++;
+  }
+  if(req.body.q4b)
+  {
+
+    finalScore ++;
+  }
+  if(req.body.q4c)
+  {
+
+    finalScore --;
+  }
+
+  var results = {
+    'username' : req.body.username,
+    'final' : finalScore
+  }
 
 
+  db.none('insert into userscores(username, points)' + 'values(${username}, ${final})', results)
+    .then(function(){
+      db.any('SELECT * FROM userscores ORDER BY points DESC LIMIT 10')
+        .then(function(db){
+          return res.render('scores', {db:db});
+        })
+        .catch(function(err){
+          return next(err);
+        })
+        })
 
-
-  db.any('SELECT * FROM userscores ORDER BY points LIMIT 5')
-    .then(function(db){
-      return res.render('scores', {db:db});
-    })
-    .catch(function(err){
-      return next(err);
-    })
 });
 
 router.get('/scores', function(req, res, next){
-  db.any('SELECT * FROM userscores ORDER BY points LIMIT 5')
+  db.any('SELECT * FROM userscores ORDER BY points DESC LIMIT 10')
     .then(function(db){
-      console.log(db);
       return res.render('scores', {db:db});
     })
     .catch(function(err){

@@ -5,8 +5,9 @@
   <body class = "container">
     <section id = "mainSection">
 
-      Try to beat the game: <%= username %>
+Try to beat the game <%= username %>!
       <form action = '/scores' method = POST>
+
         What is 5 x 5?  <input type = 'text' id = 'q1' name = 'q1'><br>
 
         What state is Lubbock in?<br>
@@ -27,6 +28,7 @@
 
 
         <input type = 'submit'>
+        <input type = "text" value = "<%=username%>" name = 'username' id = 'username' readonly>
       </form>
     </section>
   </body>
