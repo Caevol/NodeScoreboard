@@ -8,7 +8,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres:polar-basin-61504.herokuapp.com/SCORES_URL';
+var connectionString = process.env.SCORES_URL;
 var db = pgp(connectionString);
 
 
